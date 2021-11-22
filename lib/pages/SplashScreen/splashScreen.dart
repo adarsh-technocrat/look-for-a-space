@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:look_for_space/components/AppIconSection.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -33,38 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Expanded(
               child: Container(),
             ),
-            Column(
-              children: [
-                Text(
-                  "Look for a",
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                Stack(
-                  children: [
-                    Positioned(
-                      child: Image.asset(
-                        "assets/image/gradient.93e7eba9.png",
-                        height: 110,
-                      ),
-                    ),
-                    Positioned(
-                      left: 40,
-                      bottom: 45,
-                      child: Text(
-                        "Space",
-                        style: TextStyle(
-                            fontSize: 34,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            AppIconSection(),
             Expanded(
               child: Container(),
             ),
