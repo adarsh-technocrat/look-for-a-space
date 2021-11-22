@@ -9,4 +9,16 @@ class Constants {
   // ****************************************
 
   static const String kBuyMeACoffeeUrl = "https://www.buymeacoffee.com/";
+  static const String kBaseUrl = "https://api.twitter.com/2";
+
+  static const headers = {
+    'Authorization':
+        'Bearer AAAAAAAAAAAAAAAAAAAAALJLWAEAAAAAropMBY0heaa5SIVbMi3d4x29c8w%3D2tOuKsJNCwSSvCHwpfmWSRUq6fR7AxwOLxH4x8AIKgHWr093YL',
+  };
+
+  // ************************************************* API parameter
+  static const spaceFields =
+      "title,created_at,participant_count,scheduled_start";
+  static const expansions = "creator_id";
+  static const userFields = "profile_image_url,url";
 }
