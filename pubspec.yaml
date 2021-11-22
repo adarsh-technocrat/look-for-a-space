@@ -31,6 +31,8 @@ dependencies:
   flutter_fadein: ^2.0.0
   font_awesome_flutter: ^9.2.0
   route_transitions: ^2.0.1
+  buy_me_a_coffee_widget: ^2.0.0-nullsafety.0
+  url_launcher: any
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,6 @@
-import 'dart:ui';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:look_for_space/components/AppIconSection.dart';
-import 'package:look_for_space/constants/constants.dart';
+import 'package:look_for_space/components/footerSection.dart';
 import 'package:look_for_space/pages/HomePage/homeScreen.dart';
 import 'package:route_transitions/route_transitions.dart';
 
@@ -48,26 +46,8 @@ class _SplashScreenState extends State<SplashScreen> {
             Expanded(
               child: Container(),
             ),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "Made with ♥ by ",
-                    ),
-                    TextSpan(
-                      text: "Adarsh Kumar Singh",
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Constants.kTextLinkColor,
-                      ),
-                      recognizer: new TapGestureRecognizer()
-                        ..onTap = () => print('Tap Here onTap'),
-                    ),
-                  ],
-                ),
-              ),
+            FooterSection(
+              specialThanks: false,
             ),
           ],
         ),
