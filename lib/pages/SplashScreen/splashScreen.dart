@@ -1,8 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:look_for_space/components/AppIconSection.dart';
+import 'package:look_for_space/constants/constants.dart';
+import 'package:look_for_space/pages/HomePage/homeScreen.dart';
+import 'package:route_transitions/route_transitions.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,12 +15,19 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    Future.delayed(Duration(seconds: 3)).then((value) =>
+        fadeWidget(opaque: true, newPage: HomeScreen(), context: context));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        color: Color(0xff121212),
+
         // decoration: BoxDecoration(
         //   gradient: RadialGradient(
         //     radius: 2.5,
@@ -35,10 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Expanded(
               child: Container(),
             ),
-            Hero(
-              tag: "iconSection",
-              child: AppIconSection(),
-            ),
+            AppIconSection(),
             Expanded(
               child: Container(),
             ),
@@ -54,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       text: "Adarsh Kumar Singh",
                       style: TextStyle(
                         decoration: TextDecoration.underline,
-                        color: Color(0xffA9A9A9),
+                        color: Constants.kTextLinkColor,
                       ),
                       recognizer: new TapGestureRecognizer()
                         ..onTap = () => print('Tap Here onTap'),

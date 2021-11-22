@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:look_for_space/constants/constants.dart';
 import 'package:look_for_space/pages/SplashScreen/splashScreen.dart';
 import 'package:look_for_space/provider/searchSpaceProvider.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         title: 'Look for Space',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Constants.kScaffoldBackgroundColor,
           fontFamily: "Lato",
         ),
         home: SplashScreen(),
