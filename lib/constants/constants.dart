@@ -10,6 +10,7 @@ class Constants {
 
   static const String kBuyMeACoffeeUrl = "https://www.buymeacoffee.com/";
   static const String kBaseUrl = "https://api.twitter.com/2";
+  static const String kTwitterUrl = "https://twitter.com/";
 
   static const headers = {
     'Authorization':

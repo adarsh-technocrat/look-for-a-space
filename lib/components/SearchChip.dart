@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:look_for_space/constants/constants.dart';
+import 'package:look_for_space/provider/searchSpaceProvider.dart';
 
 class SearchChip extends StatefulWidget {
-  const SearchChip({Key? key}) : super(key: key);
+  final SearchSpaceProvider? spaceProvider;
+
+  const SearchChip({Key? key, this.spaceProvider}) : super(key: key);
 
   @override
   _SearchChipState createState() => _SearchChipState();
@@ -36,6 +39,8 @@ class _SearchChipState extends State<SearchChip> {
           setState(() {
             if (selected) {
               selectedIndex = i;
+              widget.spaceProvider!
+                  .getSpaceResults(context, "scheduled", topic[i]);
             }
           });
         },

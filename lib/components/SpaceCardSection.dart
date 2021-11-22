@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:look_for_space/Models/SearchSpaceByTitleModel.dart';
 import 'package:look_for_space/constants/constants.dart';
+import 'package:look_for_space/utils/urlLauncher.dart';
 
 class SpaceCardSection extends StatelessWidget {
-  const SpaceCardSection({Key? key}) : super(key: key);
+  final List<Data>? data;
+  final Includes? includess;
+
+  const SpaceCardSection({Key? key, this.data, this.includess})
+      : super(key: key);
+
+  static Utiles utiles = Utiles();
+  static DateTime now = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -10,84 +20,106 @@ class SpaceCardSection extends StatelessWidget {
       child: ListView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: 5,
+          itemCount: data!.length,
           itemBuilder: (context, index) {
+            var items = data![index];
+            var includes = includess!.users;
+
+            var dateTime = utiles.dateTimeFormeter(
+                "hh:mm , dd  LLL", items.scheduledStart!);
+
             return Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Color(0xff4B4BF3).withOpacity(0.2),
-                      Color(0xff8A61F2).withOpacity(0.2),
-                    ],
+              child: GestureDetector(
+                onTap: () {
+                  utiles.urlLauncher(
+                      Constants.kTwitterUrl + "i/spaces/${items.id}");
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Color(0xff4B4BF3).withOpacity(0.2),
+                        Color(0xff8A61F2).withOpacity(0.2),
+                      ],
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        "With Nuance: Is Web 3.0 really driving community?",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Starting on: 18:30, 25 Nov",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
-                        child: Divider(
-                          color: Colors.white,
-                          height: 5,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          items.title.toString(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "Starting on: $dateTime",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 10),
+                          child: Divider(
+                            color: Colors.white,
+                            height: 5,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                utiles.urlLauncher(Constants.kTwitterUrl +
+                                    includes![index].username.toString());
+                              },
+                              child: CircleAvatar(
+                                minRadius: 22,
+                                backgroundColor: Colors.black,
+                                foregroundImage: NetworkImage(includes![index]
+                                    .profileImageUrl
+                                    .toString()),
                               ),
                             ),
-                            onPressed: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.all(1.0),
-                              child: Text(
-                                "Upcoming",
-                                style: TextStyle(
-                                  color: Constants.kScaffoldBackgroundColor,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
+                              onPressed: () {},
+                              child: Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: Text(
+                                  "Upcoming",
+                                  style: TextStyle(
+                                    color: Constants.kScaffoldBackgroundColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
