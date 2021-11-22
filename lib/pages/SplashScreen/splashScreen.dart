@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:look_for_space/components/AppIconSection.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,23 +18,27 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: RadialGradient(
-            radius: 2.5,
-            colors: [
-              Color(0xff121212),
-              Color(0xff121212),
-              Color(0xff121212),
-            ],
-          ),
-        ),
+        color: Color(0xff121212),
+        // decoration: BoxDecoration(
+        //   gradient: RadialGradient(
+        //     radius: 2.5,
+        //     colors: [
+        //       Color(0xff121212),
+        //       Color(0xff121212),
+        //       Color(0xff121212),
+        //     ],
+        //   ),
+        // ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: Container(),
             ),
-            AppIconSection(),
+            Hero(
+              tag: "iconSection",
+              child: AppIconSection(),
+            ),
             Expanded(
               child: Container(),
             ),
