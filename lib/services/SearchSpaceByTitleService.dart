@@ -20,8 +20,6 @@ class SearchSpaceByTitleService {
           .get(Uri.parse(urlValidator(state, query, topic)), headers: headers);
       final jsonresponse = json.decode(response.body);
 
-      print(jsonresponse);
-
       searchSpaceByTitle = SearchSpaceByTitleModel.fromJson(jsonresponse);
       if (response.statusCode == 400) {
         print("Bad Request");
@@ -37,8 +35,6 @@ class SearchSpaceByTitleService {
   }
 
   String urlValidator(String? state, String? query, String? topic) {
-    print(state.toString() + "____" + query.toString());
-
     if (topic == null) {
       return "$baseUrl/spaces/search?query=$query&state=$state&space.fields=$spaceFields&expansions=$expansions&user.fields=$userFields&topic.fields=";
     } else {

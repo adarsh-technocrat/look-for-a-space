@@ -10,7 +10,6 @@ class SearchSpaceProvider with ChangeNotifier {
 
   Future getSpaceResults(BuildContext context, String state, String searchQuery,
       [String? topic]) async {
-    print("initiated");
     isLoading = true;
     notifyListeners();
     searchSpaceByTitleModel = await searchSpaceByTitleService.getSearchSpace(
