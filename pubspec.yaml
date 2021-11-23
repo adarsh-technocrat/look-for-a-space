@@ -36,6 +36,7 @@ dependencies:
   http: ^0.13.3
   intl: ^0.17.0
   rive: ^0.7.33
+  cached_network_image: ^3.1.0+1
 
 dev_dependencies:
   flutter_test:

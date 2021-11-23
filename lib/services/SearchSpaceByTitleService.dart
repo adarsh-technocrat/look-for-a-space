@@ -19,7 +19,6 @@ class SearchSpaceByTitleService {
       var response = await http
           .get(Uri.parse(urlValidator(state, query, topic)), headers: headers);
       final jsonresponse = json.decode(response.body);
-
       searchSpaceByTitle = SearchSpaceByTitleModel.fromJson(jsonresponse);
       if (response.statusCode == 400) {
         print("Bad Request");
@@ -30,6 +29,7 @@ class SearchSpaceByTitleService {
       }
     } catch (e) {
       print("Oops!.. something went wrong ");
+      print(e);
     }
     return searchSpaceByTitle;
   }

@@ -1,5 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:look_for_space/Models/SearchSpaceByTitleModel.dart';
 import 'package:look_for_space/constants/constants.dart';
 import 'package:look_for_space/utils/urlLauncher.dart';
@@ -7,12 +7,13 @@ import 'package:look_for_space/utils/urlLauncher.dart';
 class SpaceCardSection extends StatelessWidget {
   final List<Data>? data;
   final Includes? includess;
-
-  const SpaceCardSection({Key? key, this.data, this.includess})
-      : super(key: key);
+  final List<Errors>? errorss;
 
   static Utiles utiles = Utiles();
   static DateTime now = DateTime.now();
+
+  const SpaceCardSection({Key? key, this.data, this.includess, this.errorss})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,6 @@ class SpaceCardSection extends StatelessWidget {
           itemCount: data!.length,
           itemBuilder: (context, index) {
             var items = data![index];
-            var includes = includess!.users;
-
             var dateTime = utiles.dateTimeFormeter(
                 "hh:mm , dd  LLL", items.scheduledStart!);
 
@@ -54,7 +53,7 @@ class SpaceCardSection extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          items.title.toString(),
+                          items.title == null ? "" : items.title.toString(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -62,7 +61,7 @@ class SpaceCardSection extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: items.title == null ? 0 : 15,
                         ),
                         Text(
                           "Starting on: $dateTime",
@@ -85,15 +84,14 @@ class SpaceCardSection extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                utiles.urlLauncher(Constants.kTwitterUrl +
-                                    includes![index].username.toString());
+                                // utiles.urlLauncher(
+                                //     Constants.kTwitterUrl+);
                               },
                               child: CircleAvatar(
                                 minRadius: 22,
                                 backgroundColor: Colors.black,
-                                foregroundImage: NetworkImage(includes![index]
-                                    .profileImageUrl
-                                    .toString()),
+                                // foregroundImage:
+                                //     CachedNetworkImageProvider(userData),
                               ),
                             ),
                             TextButton(
