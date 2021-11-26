@@ -4,6 +4,7 @@ import 'package:look_for_space/components/SearchChip.dart';
 import 'package:look_for_space/components/SpaceCardSection.dart';
 import 'package:look_for_space/components/ToogleSearchBar.dart';
 import 'package:look_for_space/components/footerSection.dart';
+import 'package:look_for_space/components/toogleSwitch.dart';
 import 'package:look_for_space/constants/constants.dart';
 import 'package:look_for_space/provider/searchSpaceProvider.dart';
 import 'package:look_for_space/utils/urlLauncher.dart';
@@ -27,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       var data = spaceProvider.searchSpaceByTitleModel?.data;
       var includes = spaceProvider.searchSpaceByTitleModel?.includes;
       var errors = spaceProvider.searchSpaceByTitleModel?.errors;
+      var metaData = spaceProvider.searchSpaceByTitleModel?.meta;
       return Scaffold(
         body: SingleChildScrollView(
           child: Container(
@@ -43,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: 20),
                     SearchBar(),
                     SearchChip(spaceProvider: spaceProvider),
+                    ToogleSwitch(),
                     SizedBox(height: 20),
                     spaceProvider.isLoading
                         ? Container(

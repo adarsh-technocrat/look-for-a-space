@@ -8,13 +8,38 @@ class SearchSpaceProvider with ChangeNotifier {
       SearchSpaceByTitleService();
   bool isLoading = false;
 
-  Future getSpaceResults(BuildContext context, String state, String searchQuery,
-      [String? topic]) async {
+  int initialLabelIndex = 1;
+
+  int selectedChipIndex = 8;
+
+  List<String>? labels = ['live', 'scheduled'];
+
+  List<String> topic = [
+    "web3",
+    "finance",
+    "NFT",
+    "chill",
+    "music",
+    "startup",
+    "health",
+  ];
+
+  Future getSpaceResults(BuildContext context,
+      [String? searchQuery, String? topic]) async {
+    print(searchQuery);
     isLoading = true;
     notifyListeners();
     searchSpaceByTitleModel = await searchSpaceByTitleService.getSearchSpace(
-        context, state, searchQuery, topic);
+        context, labels![initialLabelIndex], searchQuery, topic);
     isLoading = false;
     notifyListeners();
+  }
+
+  void onToggle(int index, SearchSpaceProvider spaceProvider,
+      BuildContext context) async {
+    initialLabelIndex = index;
+    notifyListeners();
+    if (spaceProvider.searchSpaceByTitleModel?.data != null)
+      await getSpaceResults(context, topic[selectedChipIndex]);
   }
 }

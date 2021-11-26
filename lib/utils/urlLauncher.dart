@@ -12,10 +12,14 @@ class Utiles {
     }
   }
 
-  String dateTimeFormeter(String formate, String stringDateAndTime) {
-    final DateFormat formatter = DateFormat(formate);
-    final String formatted =
-        formatter.format(DateTime.parse(stringDateAndTime));
-    return formatted;
+  String? dateTimeFormeter(String formate, String? stringDateAndTime) {
+    if (stringDateAndTime == null) {
+      return "";
+    } else {
+      final DateFormat formatter = DateFormat(formate);
+      final String formatted =
+          formatter.format(DateTime.parse(stringDateAndTime));
+      return formatted;
+    }
   }
 }

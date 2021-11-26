@@ -12,18 +12,6 @@ class SearchChip extends StatefulWidget {
 }
 
 class _SearchChipState extends State<SearchChip> {
-  static int selectedIndex = 8;
-
-  static List<String> topic = [
-    "web3",
-    "finance",
-    "NFT",
-    "chill",
-    "music",
-    "startup",
-    "health",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return _buildChips();
@@ -32,28 +20,28 @@ class _SearchChipState extends State<SearchChip> {
   Widget _buildChips() {
     List<Widget> chips = [];
 
-    for (int i = 0; i < topic.length; i++) {
+    for (int i = 0; i < widget.spaceProvider!.topic.length; i++) {
       ChoiceChip choiceChip = ChoiceChip(
-        selected: selectedIndex == i,
+        selected: widget.spaceProvider!.selectedChipIndex == i,
         onSelected: (bool selected) {
-          setState(() {
-            if (selected) {
-              selectedIndex = i;
-              widget.spaceProvider!
-                  .getSpaceResults(context, "scheduled", topic[i]);
-            }
-          });
+          if (selected) {
+            widget.spaceProvider!.selectedChipIndex = i;
+            widget.spaceProvider!
+                .getSpaceResults(context, widget.spaceProvider!.topic[i]);
+          }
         },
         backgroundColor: Constants.kScaffoldBackgroundColor,
         shape: RoundedRectangleBorder(
           side: BorderSide(
-              color: selectedIndex == i ? Constants.kspaceColor1 : Colors.white,
+              color: widget.spaceProvider!.selectedChipIndex == i
+                  ? Constants.kspaceColor1
+                  : Colors.white,
               width: 1),
           borderRadius: BorderRadius.circular(30),
         ),
         selectedColor: Constants.kScaffoldBackgroundColor,
         label: Text(
-          topic[i],
+          widget.spaceProvider!.topic[i],
           style: TextStyle(
               fontSize: 16, fontWeight: FontWeight.w400, color: Colors.white),
         ),

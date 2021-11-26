@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:look_for_space/Models/SearchSpaceByTitleModel.dart';
 import 'package:http/http.dart' as http;
+import 'package:look_for_space/components/flutterToast.dart';
 import 'package:look_for_space/constants/constants.dart';
 
 class SearchSpaceByTitleService {
@@ -20,6 +21,9 @@ class SearchSpaceByTitleService {
           .get(Uri.parse(urlValidator(state, query, topic)), headers: headers);
       final jsonresponse = json.decode(response.body);
       searchSpaceByTitle = SearchSpaceByTitleModel.fromJson(jsonresponse);
+      if (jsonresponse['meta']['result_count'] == 0) {
+        flutterToast("👀 No Results Right Now");
+      }
       if (response.statusCode == 400) {
         print("Bad Request");
       } else if (response.statusCode == 401) {

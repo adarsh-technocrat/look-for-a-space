@@ -25,9 +25,11 @@ class SpaceCardSection extends StatelessWidget {
           itemCount: data!.length,
           itemBuilder: (context, index) {
             var items = data![index];
-            var dateTime = utiles.dateTimeFormeter(
-                "hh:mm , dd  LLL", items.scheduledStart!);
+            var state = items.state;
+            var live = state == "live";
 
+            var dateTime = utiles.dateTimeFormeter(
+                "hh:mm , dd  LLL", items.scheduledStart);
             var user = userDetails(items);
 
             return FadeIn(
@@ -47,8 +49,8 @@ class SpaceCardSection extends StatelessWidget {
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter,
                         colors: [
-                          Color(0xff4B4BF3).withOpacity(0.2),
-                          Color(0xff8A61F2).withOpacity(0.2),
+                          Color(0xff4B4BF3).withOpacity(live ? 0.8 : 0.2),
+                          Color(0xff8A61F2).withOpacity(live ? 0.8 : 0.2),
                         ],
                       ),
                     ),
@@ -70,7 +72,7 @@ class SpaceCardSection extends StatelessWidget {
                             height: items.title == null ? 0 : 15,
                           ),
                           Text(
-                            "Starting on: $dateTime",
+                            live ? "Ongoing" : "Starting on: $dateTime",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -115,7 +117,9 @@ class SpaceCardSection extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(1.0),
                                   child: Text(
-                                    "Upcoming",
+                                    live
+                                        ? "${items.participantCount} Participants"
+                                        : "Upcoming",
                                     style: TextStyle(
                                       color: Constants.kScaffoldBackgroundColor,
                                       fontSize: 16,
