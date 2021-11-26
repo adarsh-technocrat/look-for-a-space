@@ -12,6 +12,9 @@ class Constants {
   static const String kBaseUrl = "https://api.twitter.com/2";
   static const String kTwitterUrl = "https://twitter.com/";
 
+  static const String kTwitterSpaceImage =
+      "https://www.howtogeek.com/wp-content/uploads/2021/04/Twitter-Spaces.png?width=1198&trim=1,1&bg-color=000&pad=1,1";
+
   static const headers = {
     'Authorization':
         'Bearer AAAAAAAAAAAAAAAAAAAAALJLWAEAAAAAropMBY0heaa5SIVbMi3d4x29c8w%3D2tOuKsJNCwSSvCHwpfmWSRUq6fR7AxwOLxH4x8AIKgHWr093YL',

@@ -27,6 +27,8 @@ class SpaceCardSection extends StatelessWidget {
             var dateTime = utiles.dateTimeFormeter(
                 "hh:mm , dd  LLL", items.scheduledStart!);
 
+            var user = userDetails(items);
+
             return Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
               child: GestureDetector(
@@ -84,14 +86,18 @@ class SpaceCardSection extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                // utiles.urlLauncher(
-                                //     Constants.kTwitterUrl+);
+                                if (user != null) {
+                                  utiles.urlLauncher(
+                                      Constants.kTwitterUrl + user.username!);
+                                }
                               },
                               child: CircleAvatar(
                                 minRadius: 22,
                                 backgroundColor: Colors.black,
-                                // foregroundImage:
-                                //     CachedNetworkImageProvider(userData),
+                                foregroundImage: CachedNetworkImageProvider(
+                                    user == null
+                                        ? Constants.kTwitterSpaceImage
+                                        : user.profileImageUrl!),
                               ),
                             ),
                             TextButton(
@@ -124,5 +130,18 @@ class SpaceCardSection extends StatelessWidget {
             );
           }),
     );
+  }
+
+  Users? userDetails(Data items) {
+    var includeID = includess!.users!.map((e) => e.id);
+    for (int i = 0; i < includess!.users!.length; i++) {
+      if (includeID.contains(items.creatorId)) {
+        if (items.creatorId == includess!.users![i].id) {
+          return includess!.users![i];
+        }
+      } else {
+        return null;
+      }
+    }
   }
 }
