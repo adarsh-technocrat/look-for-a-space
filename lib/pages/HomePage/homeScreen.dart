@@ -4,6 +4,7 @@ import 'package:look_for_space/components/SearchChip.dart';
 import 'package:look_for_space/components/SpaceCardSection.dart';
 import 'package:look_for_space/components/ToogleSearchBar.dart';
 import 'package:look_for_space/components/footerSection.dart';
+import 'package:look_for_space/constants/constants.dart';
 import 'package:look_for_space/provider/searchSpaceProvider.dart';
 import 'package:look_for_space/utils/urlLauncher.dart';
 import 'package:provider/provider.dart';
@@ -75,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               utiles.urlLauncher("https://www.buymeacoffee.com/AdarshKumar ");
             },
-            backgroundColor: Colors.transparent,
+            backgroundColor: Constants.kScaffoldBackgroundColor,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Image.asset("assets/image/bmc_svg_logo 1.png"),
