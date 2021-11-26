@@ -37,6 +37,8 @@ dependencies:
   intl: ^0.17.0
   rive: ^0.7.33
   cached_network_image: ^3.1.0+1
+  toggle_switch: ^1.3.0
+  flutter_svg: ^0.20.0-nullsafety.3
 
 dev_dependencies:
   flutter_test:

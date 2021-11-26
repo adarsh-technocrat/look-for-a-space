@@ -5,6 +5,7 @@ import 'package:look_for_space/components/SpaceCardSection.dart';
 import 'package:look_for_space/components/ToogleSearchBar.dart';
 import 'package:look_for_space/components/footerSection.dart';
 import 'package:look_for_space/provider/searchSpaceProvider.dart';
+import 'package:look_for_space/utils/urlLauncher.dart';
 import 'package:provider/provider.dart';
 import 'package:rive/rive.dart';
 
@@ -16,6 +17,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Utiles utiles = Utiles();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<SearchSpaceProvider>(
@@ -52,17 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             : SpaceCardSection(
                                 data: data,
                                 includess: includes,
-                                errorss: errors),
-
-                    // Padding(
-                    //   padding: const EdgeInsets.all(20.0),
-                    //   child: Container(
-                    //     child: BuyMeACoffeeWidget(
-                    //       sponsorID: "AdarshKumar",
-                    //       theme: BlueTheme(),
-                    //     ),
-                    //   ),
-                    // ),
+                                errorss: errors,
+                              ),
                     SizedBox(height: 10),
                     FooterSection(
                       specialThanks: true,
@@ -70,6 +64,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+            ),
+          ),
+        ),
+        floatingActionButton: Container(
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(50)),
+          child: FloatingActionButton(
+            onPressed: () {
+              utiles.urlLauncher("https://www.buymeacoffee.com/AdarshKumar ");
+            },
+            backgroundColor: Colors.transparent,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Image.asset("assets/image/bmc_svg_logo 1.png"),
             ),
           ),
         ),

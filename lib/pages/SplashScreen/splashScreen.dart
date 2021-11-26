@@ -25,17 +25,6 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-
-        // decoration: BoxDecoration(
-        //   gradient: RadialGradient(
-        //     radius: 2.5,
-        //     colors: [
-        //       Color(0xff121212),
-        //       Color(0xff121212),
-        //       Color(0xff121212),
-        //     ],
-        //   ),
-        // ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

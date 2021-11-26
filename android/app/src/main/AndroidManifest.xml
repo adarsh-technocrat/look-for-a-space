@@ -2,7 +2,7 @@
     package="com.space.look_for_space">
      <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="look_for_space"
+        android:label="Look for Space"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
