@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 3)).then((value) =>
-        fadeWidget(opaque: true, newPage: HomeScreen(), context: context));
+        pushWidgetWhileRemove(newPage: HomeScreen(), context: context));
     super.initState();
   }
 
