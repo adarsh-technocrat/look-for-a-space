@@ -61,7 +61,7 @@ class FooterSection extends StatelessWidget {
                             ..onTap = () => utiles
                                 .urlLauncher("https://www.lookfora.space/")),
                       TextSpan(
-                        text: " insperation. ",
+                        text: " inspiration. ",
                       ),
                     ],
                   ),
