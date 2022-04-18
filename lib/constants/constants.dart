@@ -17,7 +17,7 @@ class Constants {
 
   static const headers = {
     'Authorization':
-        'Bearer AAAAAAAAAAAAAAAAAAAAALJLWAEAAAAAropMBY0heaa5SIVbMi3d4x29c8w%3D2tOuKsJNCwSSvCHwpfmWSRUq6fR7AxwOLxH4x8AIKgHWr093YL',
+        'Bearer [YOUR AUTH TOKEN]',
   };
 
   // ************************************************* API parameter
